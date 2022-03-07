@@ -1,10 +1,15 @@
 package guru.springframework.domain;
 
+import lombok.*;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Getter
+@Setter
+@RequiredArgsConstructor
 @Entity
 public class UnitOfMeasure {
 
@@ -14,19 +19,8 @@ public class UnitOfMeasure {
 
     private String description;
 
-    public Long getId() {
-        return id;
+    public UnitOfMeasure(String description) {
+        this.description = description;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String uom) {
-        this.description = uom;
-    }
 }
