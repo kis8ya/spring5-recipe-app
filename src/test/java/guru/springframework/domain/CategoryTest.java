@@ -1,7 +1,8 @@
 package guru.springframework.domain;
 
-import junit.framework.TestCase;
-import org.junit.Before;
+import org.aspectj.lang.annotation.Before;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -10,7 +11,7 @@ import java.util.Set;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-public class CategoryTest extends TestCase {
+public class CategoryTest {
 
     private Category category;
 
@@ -21,7 +22,7 @@ public class CategoryTest extends TestCase {
             .description("Chicken").build();
     private final Set<Recipe> EXPECTED_RECIPES = new HashSet<>(Collections.singletonList(EXPECTED_RECIPE));
 
-    @Before
+    @BeforeEach
     public void setUp() {
         category = Category.builder()
                 .id(EXPECTED_ID)
@@ -29,14 +30,17 @@ public class CategoryTest extends TestCase {
                 .recipes(EXPECTED_RECIPES).build();
     }
 
+    @Test
     public void testGetId() {
         assertThat(category.getId(), equalTo(EXPECTED_ID));
     }
 
+    @Test
     public void testTestGetName() {
         assertThat(category.getName(), equalTo(EXPECTED_NAME));
     }
 
+    @Test
     public void testGetRecipes() {
         Set<Recipe> actual = category.getRecipes();
         assertThat(actual, hasSize(1));

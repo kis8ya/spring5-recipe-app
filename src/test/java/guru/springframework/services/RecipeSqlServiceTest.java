@@ -2,8 +2,9 @@ package guru.springframework.services;
 
 import guru.springframework.domain.Recipe;
 import guru.springframework.repositories.RecipeRepository;
-import junit.framework.TestCase;
-import org.junit.Before;
+import org.aspectj.lang.annotation.Before;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
@@ -15,7 +16,7 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-public class RecipeSqlServiceTest extends TestCase {
+public class RecipeSqlServiceTest {
 
     private RecipeSqlService service;
 
@@ -25,7 +26,7 @@ public class RecipeSqlServiceTest extends TestCase {
     @Mock
     RecipeRepository repo;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         Mockito.when(repo.findAll())
@@ -34,6 +35,7 @@ public class RecipeSqlServiceTest extends TestCase {
         service = new RecipeSqlService(repo);
     }
 
+    @Test
     public void testGetAll() {
         List<Recipe> actual = new ArrayList<>(service.getAll());
 

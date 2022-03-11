@@ -1,0 +1,54 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--/*@thymesVar id="recipe" type="guru.springframework.domain.Recipe"*/-->
+<head>
+    <meta charset="UTF-8"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+          crossorigin="anonymous"
+          th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}">
+    <script th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"
+            th:href="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"
+    ></script>
+
+    <title th:text="${recipe.getDescription()}">Recipe</title>
+</head>
+<body>
+<div class="container">
+<h3 th:text="${recipe.getDescription()}">Recipe</h3>
+<a th:href="${recipe.getUrl()}" target="_blank">source</a>
+<h3>Stats</h3>
+<div class="container">
+    <table class="table table-hover" style="width: 50%">
+        <tr>
+            <td>Prep time</td>
+            <td th:text="${recipe.getPrepTime()}">7</td>
+        </tr>
+        <tr>
+            <td>Cook time</td>
+            <td th:text="${recipe.getCookTime()}">7</td>
+        </tr>
+        <tr>
+            <td>Servings</td>
+            <td th:text="${recipe.getServings()}">22</td>
+        </tr>
+    </table>
+</div>
+
+<h3>Ingredients</h3>
+<div class="container">
+    <table class="table table-hover" style="width: 50%">
+        <tr th:each="ingredient : ${recipe.getIngredients()}">
+            <td th:text="${ingredient.getAmount()}">1</td>
+            <td th:text="${ingredient.getOum().getDescription()}">7</td>
+            <td th:text="${ingredient.getDescription()}">Fresh Tomatoes</td>
+        </tr>
+    </table>
+</div>
+
+</div>
+</body>
+</html>
